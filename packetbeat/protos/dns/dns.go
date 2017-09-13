@@ -375,7 +375,7 @@ func (dns *dnsPlugin) publishTransaction(t *dnsTransaction) {
 	if t.request != nil && t.response != nil {
 		event["bytes_in"] = t.request.length
 		event["bytes_out"] = t.response.length
-		event["responsetime"] = int32(t.response.ts.Sub(t.ts).Nanoseconds() / 1e6)
+		event["responsetime"] = int32(t.response.ts.Sub(t.ts).Nanoseconds() / 1e3)
 		event["method"] = dnsOpCodeToString(t.request.data.Opcode)
 		if len(t.request.data.Question) > 0 {
 			event["query"] = dnsQuestionToString(t.request.data.Question[0])
